@@ -50,10 +50,12 @@ def handle_message(event):
                 package_id='1',
                 sticker_id='106'
             ))
-    elif msg == '你是誰':
-        reply = "我是機器人"
-    elif "time" in msg:
-        reply = "營業時間:一~五, 0900-1700"
+    elif '你是誰' in msg:
+        reply = '我是機器人'
+    elif '你今年幾歲' in msg:
+        reply = '這是秘密'
+    elif 'time' in msg:
+        reply = '營業時間:一~五, 0900-1700'
     else:
         reply = '我無法回答'
 
