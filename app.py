@@ -42,15 +42,19 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     msg = event.message.text
-    if "time" in msg:
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text="營業時間:一~五, 0900-1700"))
-    else:
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text=msg))
 
+    if msg in ['hi', 'Hi']:
+        reply = 'Hi'
+    elif msg == '你是誰':
+        reply = "我是機器人"
+    elif "time" in msg:
+        reply = "營業時間:一~五, 0900-1700"
+    else:
+        reply = '我無法回答'
+
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=reply))
 
 if __name__ == "__main__":
     app.run()
