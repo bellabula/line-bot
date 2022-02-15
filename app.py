@@ -44,7 +44,12 @@ def handle_message(event):
     msg = event.message.text
 
     if msg in ['hi', 'Hi']:
-        reply = 'Hi'
+        line_bot_api.reply_message(
+            event.reply_token,
+            StickerSendMessage(
+                package_id='106',
+                sticker_id='1'
+            ))
     elif msg == '你是誰':
         reply = "我是機器人"
     elif "time" in msg:
@@ -54,10 +59,6 @@ def handle_message(event):
 
     line_bot_api.reply_message(
         event.reply_token,
-        StickerSendMessage(
-            package_id='106',
-            sticker_id='1'
-        ),
         TextSendMessage(text=reply))
 
 if __name__ == "__main__":
