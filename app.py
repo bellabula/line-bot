@@ -47,8 +47,8 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token,
             StickerSendMessage(
-                package_id='106',
-                sticker_id='1'
+                package_id='1',
+                sticker_id='106'
             ))
     elif msg == '你是誰':
         reply = "我是機器人"
