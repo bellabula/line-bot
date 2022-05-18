@@ -12,6 +12,8 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage, StickerSendMessage,
 )
 
+import random
+
 app = Flask(__name__)
 
 # token
@@ -43,15 +45,26 @@ def callback():
 def handle_message(event):
     msg = event.message.text
 
-    if msg in ['hi', 'Hi']:
+    green = ['green1.jpg', 'green2.jpg', 'green3.jpg']
+    blue = ['blue1.jpg', 'blue2.jpg', 'blue3.jpg']
+    orange = ['orange1.jpg', 'orange2.jpg', 'orange3.jpg']
+    purple = ['purple1.jpg', 'purple2.jpg', 'purple3.jpg']
+    red = ['red1.jpg', 'red2.jpg', 'red3.jpg']
+    random_list = green + blue + orange + purple + red
+
+    if msg in ['hi', 'Hi', '嗨', '']:
         line_bot_api.reply_message(
             event.reply_token,
             StickerSendMessage(
                 package_id='1',
                 sticker_id='106'
             ))
-    elif '你是誰' in msg:
-        reply = '我是機器人'
+    elif msg == 'Random':
+        ima = random.choice(random_list)
+        path = 'https://git.heroku.com/line-bot-test0215.git/Image/' + ima
+        image_message = ImageSendMessage(
+            original_content_url=path,
+            preview_image_url=path)
     elif '你今年幾歲' in msg:
         reply = '這是秘密'
     elif 'time' in msg:
@@ -59,9 +72,7 @@ def handle_message(event):
     else:
         reply = '我無法回答'
 
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=reply))
+    line_bot_api.reply_message(event.reply_token, image_message)
 
 if __name__ == "__main__":
     app.run()
