@@ -61,17 +61,44 @@ def handle_message(event):
             ))
     elif msg == 'Random':
         ima = random.choice(random_list)
-        path = 'https://git.heroku.com/line-bot-test0215.git/Image/' + ima
+        path = 'https://github.com/bellabula/line-bot/blob/master/Image/' + ima + '?raw=true'
         image_message = ImageSendMessage(
             original_content_url=path,
             preview_image_url=path)
-    elif '你今年幾歲' in msg:
-        reply = '這是秘密'
-    elif 'time' in msg:
-        reply = '營業時間:一~五, 0900-1700'
+    elif msg == 'green':
+        ima = random.choice(green)
+        path = 'https://github.com/bellabula/line-bot/blob/master/Image/' + ima + '?raw=true'
+        image_message = ImageSendMessage(
+            original_content_url=path,
+            preview_image_url=path)
+    elif msg == 'blue':
+        ima = random.choice(blue)
+        path = 'https://github.com/bellabula/line-bot/blob/master/Image/' + ima + '?raw=true'
+        image_message = ImageSendMessage(
+            original_content_url=path,
+            preview_image_url=path)
+    elif msg == 'orange':
+        ima = random.choice(orange)
+        path = 'https://github.com/bellabula/line-bot/blob/master/Image/' + ima + '?raw=true'
+        image_message = ImageSendMessage(
+            original_content_url=path,
+            preview_image_url=path)
+    elif msg == 'purple':
+        ima = random.choice(purple)
+        path = 'https://github.com/bellabula/line-bot/blob/master/Image/' + ima + '?raw=true'
+        image_message = ImageSendMessage(
+            original_content_url=path,
+            preview_image_url=path)
+    elif msg == 'red':
+        ima = random.choice(red)
+        path = 'https://github.com/bellabula/line-bot/blob/master/Image/' + ima + '?raw=true'
+        image_message = ImageSendMessage(
+            original_content_url=path,
+            preview_image_url=path)
     else:
         reply = '我無法回答'
-
+        line_bot_api.reply_message(event.reply_token, reply)
+    
     line_bot_api.reply_message(event.reply_token, image_message)
 
 if __name__ == "__main__":
