@@ -9,7 +9,7 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage, StickerSendMessage,
+    MessageEvent, TextMessage, TextSendMessage, StickerSendMessage, ImageSendMessage
 )
 
 import random
@@ -97,7 +97,7 @@ def handle_message(event):
             preview_image_url=path)
     else:
         reply = '我無法回答'
-        line_bot_api.reply_message(event.reply_token, reply)
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=reply))
     
     line_bot_api.reply_message(event.reply_token, image_message)
 
